@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="TheBoardNS">
+  
+  <select id="selectTB" parameterType="long" resultType="TheBoardVO"> <!-- 원래는 패키지이름까지 달아야 하지만 별명을 달았기 때문에 별명을 쓴다. -->
+  	select * from theBoard where theBoardNum = #{theBoardNum}
+  </select>
+  
+  <insert id="insertTB" parameterType="TheBoardVO" >
+  	insert into theBoard
+  		values(theboard_seq.nextval, #{theBoardTitle}, #{irum}, #{theBoardPwd}, #{theBoardContent}, sysdate )
+  </insert>
+  
+  <delete id="deleteTB" parameterType="long">
+  	delete from theBoard where theBoardNum = #{lsh} <!-- {} 안에 아무거나 들어가도 됨 -->
+  </delete> 
+  
+  <select id="selectAll" resultType="TheBoardVO">
+  	select * from theBoard
+  </select>
+  
+  </mapper>
